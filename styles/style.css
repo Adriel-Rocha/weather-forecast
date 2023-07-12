@@ -76,6 +76,7 @@ body {
 
 .textPreview {
     margin-left: 20px;
+    text-transform: capitalize;
 }
 
 .humity {
