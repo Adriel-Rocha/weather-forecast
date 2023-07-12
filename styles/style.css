@@ -1,0 +1,83 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://source.unsplash.com/1600x900/?landscape");
+    background-size: cover;
+    background-position: center center;
+}
+
+.container {
+    width: 95%;
+    max-width: 450px;
+    background: #000000d3;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.inputCity {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 20px;
+    background-color: #7c7c7c2b;
+    width: calc(100% - 70px);
+}
+
+.btnSearch {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 50%;
+    background: #7c7c7c2b;
+    cursor: pointer;
+    float: right;
+    width: 40px;
+    height: 40px;
+}
+
+.iconSearch {
+    width: 20px;
+}
+
+.resultsOfSearch {
+    margin-top: 30px;
+}
+
+.city {
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.temp {
+    margin-top: 20px;
+    font-size: 21px;
+}
+
+.preview {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.textPreview {
+    margin-left: 20px;
+}
+
+.humity {
+    margin-top: 20px;
+}
