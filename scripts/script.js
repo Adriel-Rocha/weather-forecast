@@ -45,11 +45,11 @@ window.onload =  function openPage() {
 
 
 async function getImage(cityName) {
-    const datesSearch = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=xlarge&num=2&q=${cityName}`).then(response => response.json())
-    const imageCity = datesSearch.items[1].link
-    backGroundImg(imageCity)
+    const datesSearch = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=xlarge&num=5&q=imagens da cidade de ${cityName}`).then(response => response.json())
+    backGroundImg(datesSearch)
 }
 
-function backGroundImg(imageCity) {
+function backGroundImg(datesSearch) {
+    const imageCity = datesSearch.items[0].link
     document.body.style.backgroundImage = `url(${imageCity})`
 }
