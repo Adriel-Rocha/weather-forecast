@@ -20,13 +20,13 @@ async function searchCity(city) {
 
 
 function showResult(dates) {
-    getImage(dates.name)
     document.querySelector('.city').innerHTML = 'weather in ' + dates.name
     document.querySelector('.temp').innerHTML = Math.floor(dates.main.temp) + '°F'
     document.querySelector('.imgPreview').src = `https://openweathermap.org/img/wn/${dates.weather[0].icon}.png`
     document.querySelector('.textPreview').innerHTML = dates.weather[0].description
     document.querySelector('.humidity').innerHTML = 'Humidity: ' + dates.main.humidity + '%'
     document.querySelector('.inputCity').value = ''
+    getImage(dates.name)
 }
 
 
@@ -45,11 +45,12 @@ window.onload =  function openPage() {
 
 
 async function getImage(cityName) {
-    const datesSearch = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=xlarge&num=5&q=imagens da cidade de ${cityName}`).then(response => response.json())
-    backGroundImg(datesSearch)
+    const datesOnSearch = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=xlarge&num=2&q=imagem da cidade de ${cityName}`).then(response => response.json())
+    const linkImg = datesOnSearch.items[0].link
+    backGroundImg(linkImg)
 }
 
-function backGroundImg(datesSearch) {
-    const imageCity = datesSearch.items[0].link
-    document.body.style.backgroundImage = `url(${imageCity})`
+function backGroundImg(imgLink) {
+    document.body.style.backgroundImage = `url(${imgLink})`
+    console.log(document.body.style.backgroundImage)
 }
