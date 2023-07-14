@@ -18,20 +18,23 @@ function clickSearch() {
 async function searchCity(city) {
     const dates = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`).then(response => response.json())
     showResult(dates)
+    console.log(dates)
 }
 
 
 function showResult(dates) {
-    document.querySelector('.city').innerHTML = 'weather in ' + dates.name
+    document.querySelector('.city').innerHTML = 'Weather in ' + dates.name
+    document.querySelector('.iconFlag').src = `https://www.countryflagicons.com/FLAT/64/${dates.sys.country}.png`
     document.querySelector('.temp').innerHTML = Math.floor(dates.main.temp) + '°F'
     document.querySelector('.imgPreview').src = `https://openweathermap.org/img/wn/${dates.weather[0].icon}.png`
     document.querySelector('.textPreview').innerHTML = dates.weather[0].description
-    document.querySelector('.humidity').innerHTML = 'Humidity: ' + dates.main.humidity + '%'
+    document.querySelector('.humidity').innerHTML = dates.main.humidity + '%'
+    document.querySelector('.air').innerHTML = dates.wind.speed + 'm/s'
     document.querySelector('.inputCity').value = ''
 }
 
 
-window.onload =  function openPage() {
+window.onload = function openPage() {
     searchCity(cityRandom)
     searchImageCity(cityRandom)
 }
@@ -50,7 +53,7 @@ async function searchImageCity(city) {
     changTheBackgraund(imgBackground)
 
 }
-    
+
 function changTheBackgraund(imgBackground) {
     document.body.style.backgroundImage = `url(${imgBackground})`
 }
@@ -59,13 +62,13 @@ function changTheBackgraund(imgBackground) {
 
 
 
-// async function getImage(cityName) {
-//     const datesOnSearch = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=xlarge&num=1&q=imagem da cidade de ${cityName}`).then(response => response.json())
-//     const linkImg = datesOnSearch.items[0].link
-//     backGroundImg(linkImg)
-// }
+async function getImage(cityName) {
+    const datesOnSearch = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=xlarge&num=1&q=imagem da cidade de ${cityName}`).then(response => response.json())
+    const linkImg = datesOnSearch.items[0].link
+    backGroundImg(linkImg)
+}
 
-// function backGroundImg(imgLink) {
-//     document.body.style.backgroundImage = `url(${imgLink})`
-//     console.log(document.body.style.backgroundImage)
-// }
+function backGroundImg(imgLink) {
+    document.body.style.backgroundImage = `url(${imgLink})`
+    console.log(document.body.style.backgroundImage)
+}

@@ -59,13 +59,25 @@ body {
 }
 
 .city {
+    display: inline;
     font-size: 28px;
     font-weight: 300;
 }
 
-.temp {
+.iconFlag {
+    margin-left: 10px;
+    width: 28px;
+}
+
+.thermostat {
     margin-top: 20px;
+    margin-right: 5px;
+}
+
+.temp {
+    display: inline;
     font-size: 21px;
+    align-items: baseline;
 }
 
 .preview {
@@ -79,6 +91,40 @@ body {
     text-transform: capitalize;
 }
 
-.humity {
+.viewMore {
+    display: flex;
     margin-top: 20px;
+    align-items: center;
+}
+
+.humidity, .air {
+    display: inline;
+    padding: 0 20px 0 5px;
+    border-right: 1px solid #fff;
+}
+
+.air {
+    border: none;
+}
+
+.iconAir {
+    padding-left: 20px;
+}
+
+
+
+
+@media screen and (max-width: 480px) {
+    .city {
+        font-size: 22px;
+    }
+
+    .iconFlag {
+        width: 22px;
+    }
+
+    .thermostat, .temp, .imgPreview, .textPreview, .humidity, .air {
+        font-size: 15px;
+    }
+
 }
