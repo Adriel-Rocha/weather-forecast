@@ -7,9 +7,11 @@ const googleApiKey = "AIzaSyDUdznwW-wynsFrxiF7mKlvCFHaWYwW9E0"
 const searchEngineId = "f1ad8c9fbb70f4923"
 
 
+
 function clickSearch() {
     const city = document.querySelector(".inputCity").value
     searchCity(city)
+    searchImageCity(city)
 }
 
 
@@ -26,12 +28,12 @@ function showResult(dates) {
     document.querySelector('.textPreview').innerHTML = dates.weather[0].description
     document.querySelector('.humidity').innerHTML = 'Humidity: ' + dates.main.humidity + '%'
     document.querySelector('.inputCity').value = ''
-    getImage(dates.name)
 }
 
 
 window.onload =  function openPage() {
     searchCity(cityRandom)
+    searchImageCity(cityRandom)
 }
 
 
@@ -42,15 +44,28 @@ window.onload =  function openPage() {
 
 
 
+async function searchImageCity(city) {
+    const dates = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=large&num=1&q=imagem da cidade de ${city}`).then(response => response.json())
+    const imgBackground = dates.items[0].link
+    changTheBackgraund(imgBackground)
 
-
-async function getImage(cityName) {
-    const datesOnSearch = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=xlarge&num=2&q=imagem da cidade de ${cityName}`).then(response => response.json())
-    const linkImg = datesOnSearch.items[0].link
-    backGroundImg(linkImg)
+}
+    
+function changTheBackgraund(imgBackground) {
+    document.body.style.backgroundImage = `url(${imgBackground})`
 }
 
-function backGroundImg(imgLink) {
-    document.body.style.backgroundImage = `url(${imgLink})`
-    console.log(document.body.style.backgroundImage)
-}
+
+
+
+
+// async function getImage(cityName) {
+//     const datesOnSearch = await fetch(`https://www.googleapis.com/customsearch/v1?key=${googleApiKey}&cx=${searchEngineId}&searchType=image&imgSize=xlarge&num=1&q=imagem da cidade de ${cityName}`).then(response => response.json())
+//     const linkImg = datesOnSearch.items[0].link
+//     backGroundImg(linkImg)
+// }
+
+// function backGroundImg(imgLink) {
+//     document.body.style.backgroundImage = `url(${imgLink})`
+//     console.log(document.body.style.backgroundImage)
+// }
